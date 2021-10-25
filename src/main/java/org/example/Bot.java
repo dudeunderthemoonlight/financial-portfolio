@@ -87,7 +87,10 @@ public class Bot extends TelegramLongPollingBot{
                 switch (command) {
                     case "/help":
                     case "/start":
-                        execute(SendMessage.builder().text("я ебал JAVA")
+                        execute(SendMessage.builder().text("Вас приветствует срань, " +
+                                        "которая отняла миллион времени и сил у ее разработчиков, " +
+                                        "я умею конвертировать основные для Росии валюты, используйте " +
+                                        "/set_currency для использования")
                                 .chatId(message.getChatId().toString()).build());
                         return;
                     case "/set_currency":

@@ -7,6 +7,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import lombok.SneakyThrows;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 public class CbrCurrencyConversion implements CurrencyConversion {
     @Override
@@ -21,19 +25,16 @@ public class CbrCurrencyConversion implements CurrencyConversion {
         if (currency == Currency.RUB) {
             return 1;
         }
-        URL url = new URL("https://www.cbr.ru/currency_base/daily/" + currency.getId());
-        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestMethod("GET");
-        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuilder response = new StringBuilder();
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-        }
-        in.close();
-        JSONObject json = new JSONObject(response.toString());
-        double rate = json.getDouble("Cur_OfficialRate");
-        double scale = json.getDouble("Cur_Scale");
-        return rate / scale;
+            Document doc = Jsoup.connect("https://www.cbr.ru/currency_base/daily/").get();
+            Elements trElements = doc.getElementsByTag("table").last().child(0).children();
+            for (Element trElement:trElements){
+                String value = trElement.child(0).text();
+                String vid = Integer.toString(currency.getId());
+                if (value.equals(vid)) {
+                    String aElement = trElement.children().last().text().replace(",", ".");
+                    return Double.parseDouble(aElement);
+                }
+            };
+        return -1;
     }
 }
