@@ -21,10 +21,12 @@ import org.telegram.telegrambots.meta.generics.LongPollingBot;
 import org.telegram.telegrambots.meta.generics.Webhook;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.Properties;
 
 public class Bot extends TelegramLongPollingBot{
     private final CurrencyMode currencyMode = CurrencyMode.getInstance();
@@ -138,6 +140,9 @@ public class Bot extends TelegramLongPollingBot{
         }
     }
 
+
+
+
     @Override
     public void clearWebhook() throws TelegramApiRequestException {
         super.clearWebhook();
@@ -154,7 +159,17 @@ public class Bot extends TelegramLongPollingBot{
 
     @Override
     public String getBotToken() {
-        return "2093357793:AAEwdlZ0pTJ4L5D0fFYYTOefcf8-IZJxXCM";
+        Properties prop = new Properties();
+        try {
+            //load a properties file from class path, inside static method
+            prop.load(App.class.getClassLoader().getResourceAsStream("config.properties"));
+        } catch (
+                IOException ex) {
+            ex.printStackTrace();
+        }
+        finally {
+            return prop.getProperty("token");
+        }
     }
 
 }
