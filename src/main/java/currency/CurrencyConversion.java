@@ -1,7 +1,4 @@
-package org.example;
-
-import org.example.Currency;
-import org.example.CbrCurrencyConversion;
+package currency;
 
 public interface CurrencyConversion {
 

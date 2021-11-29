@@ -1,7 +1,4 @@
-package org.example;
-
-import org.example.Currency;
-import org.example.HashMapCurrencyMode;
+package currency;
 
 public interface CurrencyMode {
 

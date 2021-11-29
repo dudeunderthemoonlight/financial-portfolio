@@ -1,7 +1,5 @@
-package org.example;
+package currency;
 
-import org.example.Currency;
-import org.example.CurrencyMode;
 import java.util.HashMap;
 import java.util.Map;
 

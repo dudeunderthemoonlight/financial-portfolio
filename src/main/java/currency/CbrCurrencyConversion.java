@@ -1,12 +1,6 @@
-package org.example;
-import org.example.Currency;
-import org.example.CurrencyConversion;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+package currency;
+
 import lombok.SneakyThrows;
-import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
