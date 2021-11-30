@@ -33,9 +33,6 @@ public class CurrencyHandler {
             CurrencyConversion.getInstance();
 
 
-    private Long getChatIdFromUpdate(Update update) {
-        return update.getMessage().getChatId();
-    }
 
 
     @SneakyThrows
@@ -95,11 +92,10 @@ public class CurrencyHandler {
     }
 
 
-    public void convertion (Message message) throws TelegramApiException {
-        Long chatID = message.getChatId();
-        Optional<Double> value = parseDouble(message.getText());
-        Currency originalCurrency = currencyMode.getOriginalCurrency(message.getChatId());
-        Currency targetCurrency = currencyMode.getTargetCurrency(message.getChatId());
+    public void convertion (Long chatID, String message) throws TelegramApiException {
+        Optional<Double> value = parseDouble(message);
+        Currency originalCurrency = currencyMode.getOriginalCurrency(chatID);
+        Currency targetCurrency = currencyMode.getTargetCurrency(chatID);
         double ratio = currencyConversion.getConversionRatio(originalCurrency, targetCurrency);
         if (value.isPresent()) {
             sendMessage(chatID,

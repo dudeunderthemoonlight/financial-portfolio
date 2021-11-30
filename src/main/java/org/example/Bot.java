@@ -9,11 +9,10 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import java.io.IOException;
 import java.util.*;
 
-public class Bot extends TelegramLongPollingBot{
+public class Bot extends TelegramLongPollingBot {
 
     private final UpdateHandler updateHandler;
     private final CurrencyHandler currencyHandler;
-
 
     public Bot() {
         currencyHandler = new CurrencyHandler(this);
@@ -25,7 +24,7 @@ public class Bot extends TelegramLongPollingBot{
     public void onUpdateReceived(Update update) {
         if (update.hasMessage()) {
             try {
-                updateHandler.handleText(update);
+                updateHandler.handlerText(update);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -55,6 +54,6 @@ public class Bot extends TelegramLongPollingBot{
                 IOException ex) {
             ex.printStackTrace();
         }
-            return prop.getProperty("token");
+        return prop.getProperty("token");
     }
 }

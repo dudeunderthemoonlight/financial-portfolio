@@ -22,39 +22,49 @@ public class UpdateHandler {
                 .build());
     }
 
+    public static boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     private Long getChatIdFromUpdate(Update update) {
         return update.getMessage().getChatId();
     }
 
     private String getTextFromUpdate(Update update) {
-        return update.getMessage().getText();
-    }
-
-    private void helper(Long chatID) throws TelegramApiException {
-        sendMessage(chatID,"Я умею конвертировать основные для России валюты. Напиши /set_currency");
-    }
-
-    private void starter(Long chatID) throws TelegramApiException {
-        sendMessage(chatID,"Вас приветствует финансовый бот." +
-                    "Я умею: конвертировать основные для России валюты" +
-                    "Напиши /set_currency для использования");
-    }
-
-
-    public void handleText(Update update) throws TelegramApiException {
         Message message = update.getMessage();
-        Long chatID = getChatIdFromUpdate(update);
-        if (message != null && message.hasText()) {
-            switch (message.getText()) {
-                    case "/help": helper(chatID);
-                        break;
-                    case "/start": starter(chatID);
-                        break;
-                    case "/set_currency":
-                        currencyHandler.currencyResponse(chatID);
-                    default: currencyHandler.convertion(message);
-            }
+        if (message != null && message.hasText()){
+            return update.getMessage().getText();
         }
+        return "";
+    }
+
+    public void handlerText(Update update) throws TelegramApiException{
+        Long chatID = getChatIdFromUpdate(update);
+        String Objtext = handleText(getTextFromUpdate(update));
+        if ((Objtext) == "1") {
+            currencyHandler.currencyResponse(chatID);
+        }
+        else if (isNumeric(Objtext)){
+            currencyHandler.convertion(chatID, Objtext);
+        }
+        else {
+            sendMessage(chatID, Objtext);
+        }
+    }
+
+
+    public static String handleText(String message){
+            switch (message) {
+                    case "/help": return "Я умею конвертировать основные для России валюты. Напиши /set_currency";
+                    case "/start": return "Вас приветствует финансовый бот. Я умею: конвертировать основные для России валюты Напиши /set_currency для использования";
+                    case "/set_currency": return "1";
+            }
+        return message;
     }
 
 }
