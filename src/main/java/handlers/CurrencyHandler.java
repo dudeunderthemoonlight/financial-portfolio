@@ -1,7 +1,5 @@
 package handlers;
 
-
-import lombok.SneakyThrows;
 import org.example.Bot;
 import currency.Currency;
 import currency.CurrencyConversion;
@@ -13,12 +11,11 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+
 
 public class CurrencyHandler {
 
@@ -32,11 +29,7 @@ public class CurrencyHandler {
     private final CurrencyConversion currencyConversion =
             CurrencyConversion.getInstance();
 
-
-
-
-    @SneakyThrows
-    public void handleCallback(Update update) {
+    public void handleCallback(Update update) throws TelegramApiException {
         Message message = update.getCallbackQuery().getMessage();
         String[] param = update.getCallbackQuery().getData().split(":");
         String action = param[0];
@@ -53,7 +46,6 @@ public class CurrencyHandler {
         currencyEdit(chatID, message.getMessageId());
     }
 
-
     public List<List<InlineKeyboardButton>> createCurrencyButtons (Long chatID) {
         List<List<InlineKeyboardButton>> buttons = new ArrayList<>();
         for (Currency currency : Currency.values()) {
@@ -68,19 +60,16 @@ public class CurrencyHandler {
         return buttons;
     }
 
-
     private String getCurrencyButton (Currency saved, Currency current){
         return saved == current ? current + " ✅" : current.name();
     }
 
-
     public void currencyResponse (Long chatID) throws TelegramApiException {
-        bot.execute(SendMessage.builder().text("Choose Original and Target currencies")
+        bot.execute(SendMessage.builder().text("Выберете оригинальную и целевую валюту")
                 .chatId(chatID.toString())
                 .replyMarkup(InlineKeyboardMarkup.builder().keyboard(createCurrencyButtons(chatID)).build())
                 .build());
     }
-
 
     private void currencyEdit (Long chatID, Integer messageID) throws TelegramApiException {
         bot.execute(
@@ -91,7 +80,6 @@ public class CurrencyHandler {
                         .build());
     }
 
-
     public void convertion (Long chatID, String message) throws TelegramApiException {
         Optional<Double> value = parseDouble(message);
         Currency originalCurrency = currencyMode.getOriginalCurrency(chatID);
@@ -100,7 +88,7 @@ public class CurrencyHandler {
         if (value.isPresent()) {
             sendMessage(chatID,
                     String.format(
-                            "%4.2f %s is %4.2f %s",
+                            "%4.2f %s = %4.2f %s",
                             value.get(), originalCurrency, (value.get() * ratio), targetCurrency));
         }
     }

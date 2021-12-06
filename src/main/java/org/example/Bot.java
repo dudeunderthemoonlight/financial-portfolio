@@ -1,26 +1,26 @@
 package org.example;
 
-import currency.Currency;
 import handlers.CurrencyHandler;
 import handlers.UpdateHandler;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
-
+import profiles.UsersData;
 import java.io.IOException;
 import java.util.*;
+
 
 public class Bot extends TelegramLongPollingBot {
 
     private final UpdateHandler updateHandler;
     private final CurrencyHandler currencyHandler;
+    private final UsersData usersData;
 
     public Bot() {
         currencyHandler = new CurrencyHandler(this);
-        updateHandler = new UpdateHandler(this, currencyHandler);
+        usersData = new UsersData();
+        updateHandler = new UpdateHandler(this, currencyHandler, usersData);
     }
 
-
-    @Override
     public void onUpdateReceived(Update update) {
         if (update.hasMessage()) {
             try {
@@ -38,13 +38,10 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
-
-    @Override
     public String getBotUsername() {
         return "@VEJAVA_bot";
     }
 
-    @Override
     public String getBotToken() {
         Properties prop = new Properties();
         try {
