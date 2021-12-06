@@ -49,32 +49,34 @@ public class UpdateHandler {
         return "";
     }
 
-    public void handlerText(Update update) throws TelegramApiException{
+    public void handlerText(Update update) throws TelegramApiException {
         Long chatID = getChatIdFromUpdate(update);
         if (!usersData.inData(chatID)) {
             usersData.addUser(chatID);
         }
         String objtext = handleText(getTextFromUpdate(update));
-        if (objtext == "1") {
-            currencyHandler.currencyResponse(chatID);
-        }
-        else if (objtext == "2") {
-            sendMessage(chatID, portfolioHandler.responseEdit(chatID));
-        }
-        else if (objtext == "3"){
-            sendMessage(chatID, portfolioHandler.getValue(chatID));
-            sendMessage(chatID, portfolioHandler.givePortfolio(chatID));
-        }
-        else if (isNumeric(objtext)){
-            currencyHandler.convertion(chatID, objtext);
-        }
-        else if (portfolioHandler.isEditEnable(chatID)){
-            portfolioHandler.parseEdit(chatID, objtext);
-            String string = portfolioHandler.givePortfolio(chatID);
-            sendMessage(chatID, string);
-        }
-        else {
-            sendMessage(chatID, objtext);
+        switch (objtext) {
+            case "1":
+                currencyHandler.currencyResponse(chatID);
+                break;
+            case "2":
+                sendMessage(chatID, portfolioHandler.responseEdit(chatID));
+                break;
+            case "3":
+                sendMessage(chatID, portfolioHandler.getValue(chatID));
+                sendMessage(chatID, portfolioHandler.givePortfolio(chatID));
+                break;
+            default: {
+                if (isNumeric(objtext)) {
+                    currencyHandler.convertion(chatID, objtext);
+                } else if (portfolioHandler.isEditEnable(chatID)) {
+                    portfolioHandler.parseEdit(chatID, objtext);
+                    String string = portfolioHandler.givePortfolio(chatID);
+                    sendMessage(chatID, string);
+                } else {
+                    sendMessage(chatID, objtext);
+                }
+            }
         }
     }
 

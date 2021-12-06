@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42bf1320-0b49-4feb-8c80-e9792f8bf6c4" name="Changes" comment="+ user class&#10;+ profolio handler">
-      <change beforePath="$PROJECT_DIR$/ONANIZM_VREDEN.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/currency/Currency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/Currency.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/currency/HashMapCurrencyMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/HashMapCurrencyMode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/handlers/CurrencyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/handlers/CurrencyHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Bot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/handlers/UpdateHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/handlers/UpdateHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/profiles/InvestmentPortfolio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/profiles/InvestmentPortfolio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/example/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/AppTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/currency/Currency.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/currency/Currency.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/currency/HashMapCurrencyMode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/currency/HashMapCurrencyMode.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/handlers/CurrencyHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/handlers/CurrencyHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/example/Bot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/Bot.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/org/example/AppTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/org/example/AppTest.class" afterDir="false" />
     </list>
@@ -56,6 +50,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -66,7 +61,7 @@
       <recent name="org.example" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.App">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.App" />
       <module name="Telegram-bot" />
@@ -80,9 +75,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="AppTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Telegram-bot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example" />
+      <option name="MAIN_CLASS_NAME" value="org.example.AppTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.App" />
+        <item itemvalue="JUnit.AppTest" />
       </list>
     </recent_temporary>
   </component>
@@ -94,6 +105,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1635148816155</updated>
+      <workItem from="1638820602727" duration="2029000" />
     </task>
     <task id="LOCAL-00001" summary="create config.properties to separate bot-token">
       <created>1635191743727</created>
@@ -125,6 +137,9 @@
     </task>
     <option name="localTasksCounter" value="5" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

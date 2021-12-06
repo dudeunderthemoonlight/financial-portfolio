@@ -46,4 +46,10 @@ public class AppTest {
         assertEquals("2",
                 UpdateHandler.handleText("/edit"));
     }
+
+    @Test
+    void testPortfolioValueCommand() {
+        assertEquals("3",
+                UpdateHandler.handleText("/portfoliovalue"));
+    }
 }
