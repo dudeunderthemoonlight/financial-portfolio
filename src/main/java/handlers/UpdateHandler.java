@@ -5,14 +5,20 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import profiles.UsersData;
+
 
 public class UpdateHandler {
     public Bot bot;
     public CurrencyHandler currencyHandler;
+    public UsersData usersData;
+    public PortfolioHandler portfolioHandler;
 
-    public UpdateHandler(Bot bot, CurrencyHandler currencyHandler) {
+    public UpdateHandler(Bot bot, CurrencyHandler currencyHandler, UsersData usersData) {
         this.bot = bot;
         this.currencyHandler = currencyHandler;
+        this.usersData = usersData;
+        this.portfolioHandler = new PortfolioHandler(usersData);
     }
 
     public void sendMessage(Long chatID, String text) throws TelegramApiException {
@@ -45,26 +51,52 @@ public class UpdateHandler {
 
     public void handlerText(Update update) throws TelegramApiException{
         Long chatID = getChatIdFromUpdate(update);
-        String Objtext = handleText(getTextFromUpdate(update));
-        if ((Objtext) == "1") {
+        if (!usersData.inData(chatID)) {
+            usersData.addUser(chatID);
+        }
+        String objtext = handleText(getTextFromUpdate(update));
+        if (objtext == "1") {
             currencyHandler.currencyResponse(chatID);
         }
-        else if (isNumeric(Objtext)){
-            currencyHandler.convertion(chatID, Objtext);
+        else if (objtext == "2") {
+            sendMessage(chatID, portfolioHandler.responseEdit(chatID));
+        }
+        else if (objtext == "3"){
+            sendMessage(chatID, portfolioHandler.getValue(chatID));
+            sendMessage(chatID, portfolioHandler.givePortfolio(chatID));
+        }
+        else if (isNumeric(objtext)){
+            currencyHandler.convertion(chatID, objtext);
+        }
+        else if (portfolioHandler.isEditEnable(chatID)){
+            portfolioHandler.parseEdit(chatID, objtext);
+            String string = portfolioHandler.givePortfolio(chatID);
+            sendMessage(chatID, string);
         }
         else {
-            sendMessage(chatID, Objtext);
+            sendMessage(chatID, objtext);
         }
     }
-
 
     public static String handleText(String message){
             switch (message) {
-                    case "/help": return "Я умею конвертировать основные для России валюты. Напиши /set_currency";
-                    case "/start": return "Вас приветствует финансовый бот. Я умею: конвертировать основные для России валюты Напиши /set_currency для использования";
+                    case "/help":
+                        return  "Доступные команды:\n" +
+                                "/set_currency - конвертация валюты, выберете оригинальную и целевую валюты " +
+                                "и отправьте мне число (сумму оригинальной валюты)\n" +
+                                "/edit - редактирование инвестиционного портфеля\n" +
+                                "/fortfoliovalue - узнать текущую ценность своего портфеля в USD\n";
+                    case "/start":
+                        return  "Вас приветствует финансовый бот.\n" +
+                                "Я умею:\n" +
+                                "-- конвертировать основные для России валюты: /set_currency\n" +
+                                "-- хранить и оценивать ваш инвестиционный портфель:\n" +
+                                "   /edit для редактирования\n" +
+                                "   /portfoliovalue узнать текущую ценность портфеля в USD";
                     case "/set_currency": return "1";
+                    case "/edit": return "2";
+                    case "/portfoliovalue": return "3";
             }
         return message;
     }
-
 }
