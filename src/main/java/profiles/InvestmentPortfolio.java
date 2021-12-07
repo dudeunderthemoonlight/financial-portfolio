@@ -12,7 +12,9 @@ public class InvestmentPortfolio {
     public void addAsset(Currency currency, Double amount) {
         Double newAmount = amount + portfolio.getOrDefault(currency, 0.0);
         portfolio.put(currency, newAmount);
-        System.out.println(portfolio.get(currency));
+        if (newAmount == 0.0) {
+            portfolio.remove(currency);
+        }
     }
 
     public  void deleteAsset(Currency currency, Double amount) {
