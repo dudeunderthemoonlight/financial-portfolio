@@ -3,7 +3,7 @@
 
 # Log file
 *.log
-
+*.properties
 config.properties
 
 # BlueJ files
