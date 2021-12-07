@@ -56,13 +56,13 @@ public class UpdateHandler {
         }
         String objtext = handleText(getTextFromUpdate(update));
         switch (objtext) {
-            case "1":
+            case "/set_currency":
                 currencyHandler.currencyResponse(chatID);
                 break;
-            case "2":
+            case "/edit":
                 sendMessage(chatID, portfolioHandler.responseEdit(chatID));
                 break;
-            case "3":
+            case "/portfoliovalue":
                 sendMessage(chatID, portfolioHandler.getValue(chatID));
                 sendMessage(chatID, portfolioHandler.givePortfolio(chatID));
                 break;
@@ -95,9 +95,9 @@ public class UpdateHandler {
                                 "-- хранить и оценивать ваш инвестиционный портфель:\n" +
                                 "   /edit для редактирования\n" +
                                 "   /portfoliovalue узнать текущую ценность портфеля в USD";
-                    case "/set_currency": return "1";
-                    case "/edit": return "2";
-                    case "/portfoliovalue": return "3";
+                    case "/set_currency": return "/set_currency";
+                    case "/edit": return "/edit";
+                    case "/portfoliovalue": return "/portfoliovalue";
             }
         return message;
     }
