@@ -89,9 +89,4 @@ public class PortfolioHandler {
         return String.format(
                 "Ценность Вашего портфеля составляет %4.2f %s", value, target);
     }
-
-
-
-
-
 }

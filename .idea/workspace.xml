@@ -4,19 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42bf1320-0b49-4feb-8c80-e9792f8bf6c4" name="Changes" comment="+ user class&#10;+ profolio handler">
-      <change beforePath="$PROJECT_DIR$/ONANIZM_VREDEN.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/currency/Currency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/Currency.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/currency/HashMapCurrencyMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/HashMapCurrencyMode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/handlers/CurrencyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/handlers/CurrencyHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Bot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/AppTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/currency/Currency.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/currency/Currency.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/currency/HashMapCurrencyMode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/currency/HashMapCurrencyMode.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/handlers/CurrencyHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/handlers/CurrencyHandler.class" afterDir="false" />
+    <list default="true" id="42bf1320-0b49-4feb-8c80-e9792f8bf6c4" name="Changes" comment="refactoring">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/handlers/PortfolioHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/handlers/PortfolioHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/example/Bot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/Bot.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/org/example/AppTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/org/example/AppTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638819638441</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="refactoring">
+      <created>1638820387259</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1638820387259</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -144,6 +142,7 @@
     <MESSAGE value="separate logic and refactoring" />
     <MESSAGE value="add handlers to separate logic" />
     <MESSAGE value="+ user class&#10;+ profolio handler" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ user class&#10;+ profolio handler" />
+    <MESSAGE value="refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring" />
   </component>
 </project>
